@@ -3,6 +3,8 @@ kind: Service
 metadata:
   name: demo
   namespace: app1
+  labels:
+    app: demo
 spec:
   ports:
   - name: http

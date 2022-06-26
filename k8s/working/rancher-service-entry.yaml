@@ -2,14 +2,16 @@ apiVersion: networking.istio.io/v1alpha3
 kind: ServiceEntry
 metadata:
   name: rancher-service-entry
-  namespace: istio-system
+  namespace: app1
 spec:
   hosts:
   - www.rancher.com
   - rancher.com
+  workloadSelector:
+    labels:
+      app: demo
   exportTo:
-  - "api1"
-  - "api2"
+  - "."
   location: MESH_EXTERNAL
   ports:
   - number: 443
