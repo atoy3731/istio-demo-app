@@ -1,4 +1,4 @@
-defaultNamespace: app1
+defaultNamespace: cattle-fleet-system
 
 kustomize:
   dir: "./overlay"
