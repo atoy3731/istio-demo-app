@@ -16,7 +16,7 @@ spec:
       containers:
       - name: demo
         image: harbor.atoy.dev/public/istio-demo-app:1.0
-        imagePullPolicy: IfNotPresent
+        imagePullPolicy: Always
         env:
         - name: PORT
           value: "8080"

@@ -1,0 +1,29 @@
+apiVersion: security.istio.io/v1beta1
+kind: AuthorizationPolicy
+metadata:
+  name: allow-cross-namespace
+  namespace: app1
+spec:
+  action: ALLOW
+  selector:
+    matchLabels:
+      app: demo
+  rules:
+  - from:
+    - source:
+        principals: ["cluster.local/ns/app2/sa/default"]
+---
+apiVersion: security.istio.io/v1beta1
+kind: AuthorizationPolicy
+metadata:
+  name: allow-cross-namespace
+  namespace: app2
+spec:
+  action: ALLOW
+  selector:
+    matchLabels:
+      app: demo
+  rules:
+  - from:
+    - source:
+        principals: ["cluster.local/ns/app1/sa/default"]

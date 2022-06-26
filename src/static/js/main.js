@@ -57,4 +57,4 @@ const interval = setInterval(function() {
                 updateLineColor(cross, 'red', 'Failure')
             }
         });
-}, 5000);
+}, 1000);
