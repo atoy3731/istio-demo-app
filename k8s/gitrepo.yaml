@@ -7,9 +7,9 @@ spec:
   repo: https://github.com/atoy3731/istio-demo-app.git
   branch: main
   targets:
-  - name: main
+  - name: edge
     clusterSelector:
       matchLabels:
-        cluster: main
+        type: edge
   paths:
   - ./k8s
