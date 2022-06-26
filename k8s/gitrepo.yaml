@@ -4,7 +4,7 @@ metadata:
   name: istio-demo-app
   namespace: fleet-default
 spec:
-  repo: git@github.com:atoy3731/istio-demo-app.git
+  repo: https://github.com/atoy3731/istio-demo-app.git
   branch: main
   targets:
   - name: main
