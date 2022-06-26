@@ -5,6 +5,7 @@ metadata:
   namespace: fleet-default
 spec:
   repo: git@github.com:atoy3731/istio-demo-app.git
+  branch: main
   targets:
   - name: main
     clusterSelector:
