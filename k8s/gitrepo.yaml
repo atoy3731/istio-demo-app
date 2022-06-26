@@ -1,0 +1,14 @@
+kind: GitRepo
+apiVersion: fleet.cattle.io/v1alpha1
+metadata:
+  name: istio-demo-app
+  namespace: fleet-default
+spec:
+  repo: git@github.com:atoy3731/istio-demo-app.git
+  targets:
+  - name: main
+    clusterSelector:
+      matchLabels:
+        cluster: main
+  paths:
+  - ./k8s

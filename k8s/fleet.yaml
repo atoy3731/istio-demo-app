@@ -1,0 +1,4 @@
+defaultNamespace: ddns-updater
+
+kustomize:
+  dir: "./overlay"

@@ -1,0 +1,32 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: demo
+  namespace: app1
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: demo
+  template:
+    metadata:
+      labels:
+        app: demo
+    spec:
+      containers:
+      - name: demo
+        image: harbor.atoy.dev/public/istio-demo-app:1.0
+        imagePullPolicy: IfNotPresent
+        env:
+        - name: PORT
+          value: "8080"
+        - name: INTRA_URL
+          value: http://demo.app1.svc.cluster.local:8080
+        - name: CROSS_URL
+          value: http://demo.app2.svc.cluster.local:8080
+        - name: INTERNET_URL
+          value: https://www.rancher.com
+        ports:
+        - containerPort: 8080
+          name: http
+          protocol: TCP

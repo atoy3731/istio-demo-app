@@ -1,0 +1,5 @@
+resources:
+- namespace.yaml
+- deploy.yaml
+- service.yaml
+- virtualservice.yaml

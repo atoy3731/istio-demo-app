@@ -1,0 +1,16 @@
+apiVersion: networking.istio.io/v1beta1
+kind: VirtualService
+metadata:
+  name: app1-vs
+  namespace: app1
+spec:
+  gateways:
+  - istio-system/main
+  hosts:
+  - app1.atoy.lol
+  http:
+  - route:
+    - destination:
+        host: demo.app1.svc.cluster.local
+        port:
+          number: 8080
