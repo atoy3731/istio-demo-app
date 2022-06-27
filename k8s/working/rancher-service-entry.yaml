@@ -5,16 +5,13 @@ metadata:
   namespace: app1
 spec:
   hosts:
-  - www.rancher.com
-  - rancher.com
-  workloadSelector:
-    labels:
-      app: demo
+  - "www.rancher.com"
+  - "rancher.com"
   exportTo:
   - "."
   location: MESH_EXTERNAL
   ports:
   - number: 443
     name: https
-    protocol: TLS
+    protocol: HTTPS
   resolution: DNS

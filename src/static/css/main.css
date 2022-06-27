@@ -1,7 +1,24 @@
-.box {
+
+.box_left {
     display: inline-block;
     padding: 10px;
-    margin: 10px 200px 100px 10px;
+    margin: 10px 150px 0px 10px;
+    height: 200px;
+    width: 200px;
+}
+
+.box_right {
+    display: inline-block;
+    padding: 10px;
+    margin: 10px 0px 150px 10px;
+    height: 200px;
+    width: 200px;
+}
+
+.box_middle {
+    display: inline-block;
+    padding: 10px;
+    margin: 10px 0px 0px 10px;
     height: 200px;
     width: 200px;
 }
@@ -28,4 +45,8 @@
 
 .centered {
     text-align: center;
+}
+
+nav.bg-dark {
+    background-color: #778593 !important;
 }

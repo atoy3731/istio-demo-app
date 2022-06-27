@@ -5,9 +5,10 @@ metadata:
   namespace: app1
 spec:
   action: ALLOW
+  selector:
+    matchLabels:
+      app: demo
   rules:
   - from:
     - source:
         principals: ["cluster.local/ns/istio-system/sa/istio-ingressgateway-service-account"]
-    - source:
-        principals: ["cluster.local/ns/istio-system/sa/protected-ingressgateway-service-account"]

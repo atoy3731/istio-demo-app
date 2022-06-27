@@ -8,105 +8,95 @@ import (
 	"time"
 )
 
+type Response struct {
+	Internet ResponseComponent `json:"internet"`
+	Intra    ResponseComponent `json:"intra"`
+	Cross    ResponseComponent `json:"cross"`
+}
+
+type ResponseComponent struct {
+	Status string `json:"status"`
+	Code   int    `json:"code"`
+}
+
 func status(w http.ResponseWriter, r *http.Request) {
 	w.Header().Set("Content-Type", "application/json")
 
-	json.NewEncoder(w).Encode(Response{
+	json.NewEncoder(w).Encode(ResponseComponent{
 		Status: "success",
 		Code:   200,
 	})
 }
 
-func internetStatus(w http.ResponseWriter, r *http.Request, vars Vars) {
-	w.Header().Set("Content-Type", "application/json")
-
-	var respStatus string
-	var respCode int
-
+func statusAll(w http.ResponseWriter, r *http.Request, vars Vars) {
 	c := http.Client{Timeout: time.Duration(5) * time.Second}
+
+	// Internet Test
+	internetResp := ResponseComponent{}
 	log.Print(fmt.Sprintf("INTERNET: Make request to: %s", vars.InternetUrl))
 	resp, reqErr := c.Get(vars.InternetUrl)
 	if reqErr != nil {
-		respCode = 0
-		respStatus = "error"
+		internetResp.Code = 0
+		internetResp.Status = "error"
+		log.Println(fmt.Sprintf("INTERNET ERROR: %s", reqErr))
 	} else {
 		if resp.StatusCode == 200 {
-			respCode = resp.StatusCode
-			respStatus = "success"
+			internetResp.Code = resp.StatusCode
+			internetResp.Status = "success"
 		} else {
-			respCode = resp.StatusCode
-			respStatus = "error"
+			internetResp.Code = resp.StatusCode
+			internetResp.Status = "error"
+			log.Println(fmt.Sprintf("INTERNET ERROR: %d", resp.StatusCode))
+
 		}
 	}
 
-	err := json.NewEncoder(w).Encode(Response{
-		Status: respStatus,
-		Code:   respCode,
-	})
-	if err != nil {
-		http.Error(w, fmt.Sprintf("error building the response, %v", err), http.StatusInternalServerError)
-		return
-	}
-}
-
-func intraStatus(w http.ResponseWriter, r *http.Request, vars Vars) {
-	w.Header().Set("Content-Type", "application/json")
-
-	var respStatus string
-	var respCode int
-
-	c := http.Client{Timeout: time.Duration(5) * time.Second}
-	log.Print(fmt.Sprintf("INTRA-NAMESPACE: Make request to: %s", vars.IntraUrl))
-	resp, reqErr := c.Get(vars.IntraUrl)
+	// Intra Test
+	intraResp := ResponseComponent{}
+	log.Print(fmt.Sprintf("Intra: Make request to: %s", vars.IntraUrl))
+	resp, reqErr = c.Get(vars.IntraUrl)
 	if reqErr != nil {
-		respCode = 0
-		respStatus = "error"
+		intraResp.Code = 0
+		intraResp.Status = "error"
+		log.Println(fmt.Sprintf("INTRA ERROR: %s", reqErr))
 	} else {
 		if resp.StatusCode == 200 {
-			respCode = resp.StatusCode
-			respStatus = "success"
+			intraResp.Code = resp.StatusCode
+			intraResp.Status = "success"
 		} else {
-			respCode = resp.StatusCode
-			respStatus = "error"
+			intraResp.Code = resp.StatusCode
+			intraResp.Status = "error"
+			log.Println(fmt.Sprintf("INTRA ERROR: %d", resp.StatusCode))
+
 		}
 	}
 
-	err := json.NewEncoder(w).Encode(Response{
-		Status: respStatus,
-		Code:   respCode,
-	})
-	if err != nil {
-		http.Error(w, fmt.Sprintf("error building the response, %v", err), http.StatusInternalServerError)
-		return
-	}
-}
-
-func crossStatus(w http.ResponseWriter, r *http.Request, vars Vars) {
-	w.Header().Set("Content-Type", "application/json")
-
-	var respStatus string
-	var respCode int
-
-	c := http.Client{Timeout: time.Duration(5) * time.Second}
-	log.Print(fmt.Sprintf("CROSS-NAMESPACE: Make request to: %s", vars.CrossUrl))
-	resp, reqErr := c.Get(vars.CrossUrl)
+	// Cross Test
+	crossResp := ResponseComponent{}
+	log.Print(fmt.Sprintf("CROSS: Make request to: %s", vars.CrossUrl))
+	resp, reqErr = c.Get(vars.CrossUrl)
 	if reqErr != nil {
-		respCode = 0
-		respStatus = "error"
+		crossResp.Code = 0
+		crossResp.Status = "error"
+		log.Println(fmt.Sprintf("CROSS ERROR: %s", reqErr))
 	} else {
 		if resp.StatusCode == 200 {
-			respCode = resp.StatusCode
-			respStatus = "success"
+			crossResp.Code = resp.StatusCode
+			crossResp.Status = "success"
 		} else {
-			respCode = resp.StatusCode
-			respStatus = "error"
+			crossResp.Code = resp.StatusCode
+			crossResp.Status = "error"
+			log.Println(fmt.Sprintf("CROSS ERROR: %d", resp.StatusCode))
 		}
 	}
 
-	err := json.NewEncoder(w).Encode(Response{
-		Status: respStatus,
-		Code:   respCode,
-	})
+	response := Response{
+		Internet: internetResp,
+		Intra:    intraResp,
+		Cross:    crossResp,
+	}
+
+	err := json.NewEncoder(w).Encode(response)
 	if err != nil {
 		http.Error(w, fmt.Sprintf("error building the response, %v", err), http.StatusInternalServerError)
 		return

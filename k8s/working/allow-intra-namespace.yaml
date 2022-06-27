@@ -9,15 +9,3 @@ spec:
   - from:
     - source:
         namespaces: ["app1"]
----
-apiVersion: security.istio.io/v1beta1
-kind: AuthorizationPolicy
-metadata:
-  name: allow-intra-namespace
-  namespace: app2
-spec:
-  action: ALLOW
-  rules:
-  - from:
-    - source:
-        namespaces: ["app2"]

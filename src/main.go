@@ -9,11 +9,6 @@ import (
 	"os"
 )
 
-type Response struct {
-	Status string
-	Code   int
-}
-
 type Vars struct {
 	IntraUrl    string
 	CrossUrl    string
@@ -62,16 +57,8 @@ func main() {
 		status(w, r)
 	})
 
-	http.HandleFunc("/api/intra", func(w http.ResponseWriter, r *http.Request) {
-		intraStatus(w, r, vars)
-	})
-
-	http.HandleFunc("/api/cross", func(w http.ResponseWriter, r *http.Request) {
-		crossStatus(w, r, vars)
-	})
-
-	http.HandleFunc("/api/internet", func(w http.ResponseWriter, r *http.Request) {
-		internetStatus(w, r, vars)
+	http.HandleFunc("/status/all", func(w http.ResponseWriter, r *http.Request) {
+		statusAll(w, r, vars)
 	})
 
 	if vars.Port == "" {
