@@ -18,5 +18,5 @@ spec:
         methods: ["GET"]
         paths: ["/status"]
     when:
-    - key: request.headers['Auth-Token']
-      values: ["sup3r_s3cr3t"]
+    - key: request.headers['X-Auth-Token']
+      values: ["secret"]

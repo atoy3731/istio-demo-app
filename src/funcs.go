@@ -62,7 +62,7 @@ func statusAll(w http.ResponseWriter, r *http.Request, vars Vars) {
 			log.Printf("ERROR: %s", err)
 		}
 
-		req.Header.Set("Auth-Token", vars.AuthToken)
+		req.Header.Set("X-Auth-Token", vars.AuthToken)
 		resp, reqErr = c.Do(req)
 	}
 
@@ -88,12 +88,13 @@ func statusAll(w http.ResponseWriter, r *http.Request, vars Vars) {
 	if vars.AuthToken == "" {
 		resp, reqErr = c.Get(vars.CrossUrl)
 	} else {
+		log.Println("CROSS: Using authtoken!")
 		req, err := http.NewRequest("GET", vars.CrossUrl, nil)
 		if err != nil {
 			log.Printf("ERROR: %s", err)
 		}
 
-		req.Header.Set("Auth-Token", vars.AuthToken)
+		req.Header.Set("X-Auth-Token", vars.AuthToken)
 		resp, reqErr = c.Do(req)
 	}
 	if reqErr != nil {
