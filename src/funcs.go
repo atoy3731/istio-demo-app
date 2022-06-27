@@ -54,7 +54,18 @@ func statusAll(w http.ResponseWriter, r *http.Request, vars Vars) {
 	// Intra Test
 	intraResp := ResponseComponent{}
 	log.Print(fmt.Sprintf("Intra: Make request to: %s", vars.IntraUrl))
-	resp, reqErr = c.Get(vars.IntraUrl)
+	if vars.AuthToken == "" {
+		resp, reqErr = c.Get(vars.IntraUrl)
+	} else {
+		req, err := http.NewRequest("GET", vars.IntraUrl, nil)
+		if err != nil {
+			log.Printf("ERROR: %s", err)
+		}
+
+		req.Header.Set("Auth-Token", vars.AuthToken)
+		c.Do(req)
+	}
+
 	if reqErr != nil {
 		intraResp.Code = 0
 		intraResp.Status = "error"
@@ -74,7 +85,17 @@ func statusAll(w http.ResponseWriter, r *http.Request, vars Vars) {
 	// Cross Test
 	crossResp := ResponseComponent{}
 	log.Print(fmt.Sprintf("CROSS: Make request to: %s", vars.CrossUrl))
-	resp, reqErr = c.Get(vars.CrossUrl)
+	if vars.AuthToken == "" {
+		resp, reqErr = c.Get(vars.CrossUrl)
+	} else {
+		req, err := http.NewRequest("GET", vars.CrossUrl, nil)
+		if err != nil {
+			log.Printf("ERROR: %s", err)
+		}
+
+		req.Header.Set("Auth-Token", vars.AuthToken)
+		c.Do(req)
+	}
 	if reqErr != nil {
 		crossResp.Code = 0
 		crossResp.Status = "error"

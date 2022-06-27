@@ -14,6 +14,7 @@ type Vars struct {
 	CrossUrl    string
 	InternetUrl string
 	Port        string
+	AuthToken   string
 }
 
 //go:embed templates
@@ -28,6 +29,7 @@ func main() {
 		CrossUrl:    os.Getenv("CROSS_URL"),
 		InternetUrl: os.Getenv("INTERNET_URL"),
 		Port:        os.Getenv("PORT"),
+		AuthToken:   os.Getenv("AUTH_TOKEN"),
 	}
 
 	log.Println("===============")
