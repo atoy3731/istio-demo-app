@@ -28,8 +28,8 @@ spec:
           value: http://demo.app2.svc.cluster.local:8080/status
         - name: INTERNET_URL
           value: https://www.rancher.com
-#         - name: AUTH_TOKEN
-#           value: "sup3r_s3cr3t"
+        - name: AUTH_TOKEN
+          value: "sup3r_s3cr3t"
         - name: DEBUG
           value: "true"
         resources:
