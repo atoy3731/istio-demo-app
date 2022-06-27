@@ -27,7 +27,9 @@ func printHeaders(r *http.Request) {
 	}
 }
 
-func status(w http.ResponseWriter, r *http.Request) {
+func status(w http.ResponseWriter, r *http.Request, vars Vars) {
+	printHeaders(r)
+
 	w.Header().Set("Content-Type", "application/json")
 
 	json.NewEncoder(w).Encode(ResponseComponent{
@@ -40,7 +42,7 @@ func statusAll(w http.ResponseWriter, r *http.Request, vars Vars) {
 	if vars.Debug == "true" {
 		printHeaders(r)
 	}
-	
+
 	c := http.Client{Timeout: time.Duration(5) * time.Second}
 
 	// Internet Test

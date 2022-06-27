@@ -27,7 +27,7 @@ spec:
         - name: INTERNET_URL
           value: https://www.rancher.com
         - name: AUTH_TOKEN
-          value: "secret"
+          value: "sup3r_s3cr3t"
         - name: DEBUG
           value: "true"
         ports:

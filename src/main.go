@@ -59,7 +59,7 @@ func main() {
 	})
 
 	http.HandleFunc("/status", func(w http.ResponseWriter, r *http.Request) {
-		status(w, r)
+		status(w, r, vars)
 	})
 
 	http.HandleFunc("/status/all", func(w http.ResponseWriter, r *http.Request) {
