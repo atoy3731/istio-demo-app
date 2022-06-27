@@ -63,7 +63,7 @@ func statusAll(w http.ResponseWriter, r *http.Request, vars Vars) {
 		}
 
 		req.Header.Set("Auth-Token", vars.AuthToken)
-		c.Do(req)
+		resp, reqErr = c.Do(req)
 	}
 
 	if reqErr != nil {
@@ -94,7 +94,7 @@ func statusAll(w http.ResponseWriter, r *http.Request, vars Vars) {
 		}
 
 		req.Header.Set("Auth-Token", vars.AuthToken)
-		c.Do(req)
+		resp, reqErr = c.Do(req)
 	}
 	if reqErr != nil {
 		crossResp.Code = 0
