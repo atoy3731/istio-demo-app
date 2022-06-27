@@ -15,6 +15,7 @@ type Vars struct {
 	InternetUrl string
 	Port        string
 	AuthToken   string
+	Debug       string
 }
 
 //go:embed templates
@@ -30,6 +31,7 @@ func main() {
 		InternetUrl: os.Getenv("INTERNET_URL"),
 		Port:        os.Getenv("PORT"),
 		AuthToken:   os.Getenv("AUTH_TOKEN"),
+		Debug:       os.Getenv("DEBUG"),
 	}
 
 	log.Println("===============")
@@ -38,6 +40,7 @@ func main() {
 	log.Println(fmt.Sprintf("  - IntraUrl = %s", vars.IntraUrl))
 	log.Println(fmt.Sprintf("  - CrossUrl = %s", vars.CrossUrl))
 	log.Println(fmt.Sprintf("  - InternetUrl = %s", vars.InternetUrl))
+	log.Println(fmt.Sprintf("  - Debug = %s", vars.Debug))
 	log.Println("===============")
 
 	tmpl, err := template.ParseFS(indexHTML, "templates/index.html.tmpl")

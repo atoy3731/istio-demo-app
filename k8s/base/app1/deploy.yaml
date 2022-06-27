@@ -28,6 +28,8 @@ spec:
           value: https://www.rancher.com
         - name: AUTH_TOKEN
           value: "secret"
+        - name: DEBUG
+          value: "true"
         ports:
         - containerPort: 8080
           name: http

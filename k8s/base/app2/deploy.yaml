@@ -26,6 +26,8 @@ spec:
           value: http://demo.app1.svc.cluster.local:8080
         - name: INTERNET_URL
           value: https://www.rancher.com
+        - name: DEBUG
+          value: "true"
         ports:
         - containerPort: 8080
           name: http

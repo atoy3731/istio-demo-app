@@ -19,6 +19,14 @@ type ResponseComponent struct {
 	Code   int    `json:"code"`
 }
 
+func printHeaders(r *http.Request) {
+	if reqHeadersBytes, err := json.Marshal(r.Header); err != nil {
+		log.Println("Could not Marshal Req Headers")
+	} else {
+		log.Println(string(reqHeadersBytes))
+	}
+}
+
 func status(w http.ResponseWriter, r *http.Request) {
 	w.Header().Set("Content-Type", "application/json")
 
@@ -29,6 +37,10 @@ func status(w http.ResponseWriter, r *http.Request) {
 }
 
 func statusAll(w http.ResponseWriter, r *http.Request, vars Vars) {
+	if vars.Debug == "true" {
+		printHeaders(r)
+	}
+	
 	c := http.Client{Timeout: time.Duration(5) * time.Second}
 
 	// Internet Test
