@@ -28,6 +28,10 @@ spec:
           value: https://www.rancher.com
         - name: DEBUG
           value: "true"
+        resources:
+          limits:
+            cpu: 25m
+            memory: 25Mi
         ports:
         - containerPort: 8080
           name: http
