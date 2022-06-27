@@ -32,6 +32,10 @@ spec:
         #   value: "sup3r_s3cr3t"
         - name: DEBUG
           value: "true"
+        resources:
+          limits:
+            cpu: 250m
+            memory: 250Mi
         ports:
         - containerPort: 8080
           name: http
