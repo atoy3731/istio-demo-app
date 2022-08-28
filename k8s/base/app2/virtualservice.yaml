@@ -7,7 +7,7 @@ spec:
   gateways:
   - istio-system/main
   hosts:
-  - app2.atoy.lol
+  - app2.example.com
   http:
   - route:
     - destination:
