@@ -15,8 +15,11 @@ spec:
         principals: ["cluster.local/ns/app1/sa/default"]
     to:
     - operation:
+        ports: ["8080"]
         methods: ["GET"]
         paths: ["/status"]
     # when:
     # - key: request.headers[X-Auth-Token]
+    #   values: ["sup3r_s3cr3t"]
+    # - key: request.auth.claims[auth][token]
     #   values: ["sup3r_s3cr3t"]
