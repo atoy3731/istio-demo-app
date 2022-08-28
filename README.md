@@ -13,9 +13,9 @@
 
 * [KubeWarden Operator](https://docs.kubewarden.io/quick-start) installed (requires cert-manager).
 * [Istio Operator](https://istio.io/latest/docs/setup/install/operator/) is installed onto your cluster.
-* An IstioOperator custom resource is created. There is an [example](k8s/examples/istio-operator.yaml) here.
+* An IstioOperator custom resource is created. There is an [example](https://github.com/atoy3731/istio-demo-app/blob/main/k8s/examples/istiooperator.yaml) here.
 * A cert-manager [Certificate](https://cert-manager.io/docs/usage/) created in the istio-system namespace that matches the below gateway configuration.
-* A Gateway custom resource is created. There is an [example](k8s/examples/gateway.yaml) here.
+* A Gateway custom resource is created. There is an [example](https://github.com/atoy3731/istio-demo-app/blob/main/k8s/examples/gateway.yaml) here.
 
 ## Setting up '/etc/hosts'
 
