@@ -17,6 +17,6 @@ spec:
     - operation:
         methods: ["GET"]
         paths: ["/status"]
-    when:
-    - key: request.headers[X-Auth-Token]
-      values: ["sup3r_s3cr3t"]
+    # when:
+    # - key: request.headers[X-Auth-Token]
+    #   values: ["sup3r_s3cr3t"]

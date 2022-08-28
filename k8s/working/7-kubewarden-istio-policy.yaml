@@ -1,0 +1,31 @@
+apiVersion: policies.kubewarden.io/v1
+kind: ClusterAdmissionPolicy
+metadata:
+  name: kubewarden-istio-policy
+spec:
+  module: "registry://ghcr.io/atoy3731/policies/istio:latest"
+  settings:
+    excluded_namespaces:
+    - kubewarden
+    - istio-system
+    - istio-operator
+    - cattle-system
+    - kube-system
+    - cattle-fleet-system
+    - cert-manager
+    - metallb-system
+    - edge
+    excluded_pod_labels:
+      istioEnforcing: disabled
+  rules:
+    - apiGroups:
+        - ""
+      apiVersions:
+        - v1
+      resources:
+        - pods
+        - namespaces
+      operations:
+        - CREATE
+        - UPDATE
+  mutating: false
