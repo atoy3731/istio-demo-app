@@ -1,5 +1,8 @@
 #!/bin/bash
 
+kubectl cluster-info
+
+echo ""
 printf "Roll back your cluster? (y/n) "
 read ROLLBACK
 
