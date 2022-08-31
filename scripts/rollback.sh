@@ -11,3 +11,6 @@ fi
 echo "Rolling back.."
 kubectl delete -f ../k8s/working/
 kubectl patch istiooperator -n istio-system controlplane --type=merge -p '{"spec":{"meshConfig":{"outboundTrafficPolicy":{"mode":"ALLOW_ANY"}}}}'
+
+kubectl patch namespace app1 --type=merge -p '{"metadata":{"labels":{"istio-injection":"enabled"}}}'
+kubectl rollout restart -n app1 deploy/demo
