@@ -16,7 +16,7 @@ spec:
     tls:
       httpsRedirect: true
   - hosts:
-    - '*.example.com'
+    - '*.atoy.lol'
     port:
       name: https
       number: 443
