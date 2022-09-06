@@ -3,3 +3,4 @@ resources:
 - deploy.yaml
 - service.yaml
 - virtualservice.yaml
+- istio-authorizationpolicy.yaml
