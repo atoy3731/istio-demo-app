@@ -1,5 +1,16 @@
 #!/bin/bash
 
+kubectl cluster-info
+
+echo ""
+printf "Roll back your cluster? (y/n) "
+read ROLLBACK
+
+if [[ "$ROLLBACK" != "y" ]]; then
+    echo "Cancelling"
+    exit 0
+fi
+
 echo "Installing Istio.."
 istioctl operator init
 kubectl apply -f ../k8s/examples/istiooperator.yaml
