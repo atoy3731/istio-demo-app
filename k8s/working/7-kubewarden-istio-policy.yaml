@@ -13,8 +13,7 @@ spec:
     - kube-system
     - cattle-fleet-system
     - cert-manager
-    excluded_pod_labels:
-      istioEnforcing: disabled
+    excluded_pod_labels: {}
   rules:
     - apiGroups:
         - ""

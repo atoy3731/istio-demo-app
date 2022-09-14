@@ -4,7 +4,7 @@ metadata:
   name: demo
   namespace: app1
 spec:
-  replicas: 3
+  replicas: 2
   selector:
     matchLabels:
       app: demo
@@ -18,7 +18,7 @@ spec:
       containers:
       - name: demo
         image: harbor.atoy.dev/public/istio-demo-app:1.0
-        imagePullPolicy: Always
+        imagePullPolicy: IfNotPresent
         env:
         - name: PORT
           value: "8080"
